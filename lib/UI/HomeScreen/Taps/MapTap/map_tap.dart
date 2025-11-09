@@ -1,0 +1,14 @@
+import 'package:flutter/material.dart';
+
+class MapTap extends StatelessWidget {
+  const MapTap({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: const Center(
+        child: Text('Map Tap'),
+      ),
+    );
+  }
+}
