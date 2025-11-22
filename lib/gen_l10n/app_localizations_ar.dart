@@ -157,4 +157,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get reset_password => 'اعادة تعين كلمة المرور';
+
+  @override
+  String get no_events_exist => 'لا يوجد مناسبات';
 }

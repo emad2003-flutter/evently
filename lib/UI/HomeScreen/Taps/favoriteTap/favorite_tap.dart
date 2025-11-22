@@ -1,16 +1,21 @@
-import 'package:evently/UI/Widgets/custom_text_feild.dart';
+import 'package:evently/Models/event.dart';
+import 'package:evently/Providers/event_list_provider.dart';
 import 'package:evently/UI/HomeScreen/Taps/HomeTap/event_item.dart';
+import 'package:evently/UI/Widgets/custom_text_feild.dart';
 import 'package:evently/Utils/app_assets.dart';
 import 'package:evently/Utils/app_colors.dart';
 import 'package:evently/Utils/app_styles.dart';
 import 'package:evently/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class FavoriteTap extends StatelessWidget {
   const FavoriteTap({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var eventListProvider = Provider.of<EventListProvider>(context);
+    eventListProvider.getFavoriteEvents();
     // get device width and height
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
@@ -36,15 +41,23 @@ class FavoriteTap extends StatelessWidget {
             ),
             SizedBox(height: (8 / designHeight) * height),
             Expanded(
-              child: ListView.separated(
-                itemBuilder: (context, index) {
-                  return const EventItem();
-                },
-                separatorBuilder: (context, index) {
-                  return SizedBox(height: (16 / designHeight) * height);
-                },
-                itemCount: 10,
-              ),
+              child: eventListProvider.favoriteEventList.isEmpty
+                  ? Center(
+                      child: Text(
+                        AppLocalizations.of(context)!.no_events_exist,
+                      ),
+                    )
+                  : ListView.separated(
+                      itemBuilder: (context, index) {
+                        return EventItem(
+                          event: eventListProvider.favoriteEventList[index],
+                        );
+                      },
+                      separatorBuilder: (context, index) {
+                        return SizedBox(height: (16 / designHeight) * height);
+                      },
+                      itemCount: eventListProvider.favoriteEventList.length,
+                    ),
             ),
           ],
         ),

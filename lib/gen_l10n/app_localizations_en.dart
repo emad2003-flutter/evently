@@ -157,4 +157,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get reset_password => 'Reset Password';
+
+  @override
+  String get no_events_exist => 'No events exist';
 }

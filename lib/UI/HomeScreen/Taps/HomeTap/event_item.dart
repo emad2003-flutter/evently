@@ -1,13 +1,19 @@
+import 'package:evently/Models/event.dart';
+import 'package:evently/Providers/event_list_provider.dart';
 import 'package:evently/Utils/app_assets.dart';
 import 'package:evently/Utils/app_colors.dart';
 import 'package:evently/Utils/app_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class EventItem extends StatelessWidget {
-  const EventItem({super.key});
+  Event event;
+  EventItem({super.key, required this.event});
 
   @override
   Widget build(BuildContext context) {
+    var eventListProvider = Provider.of<EventListProvider>(context);
     // get device width and height
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
@@ -21,8 +27,8 @@ class EventItem extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: AppColors.primaryLight, width: 1),
-        image: const DecorationImage(
-          image: AssetImage(AppAssets.birthday),
+        image: DecorationImage(
+          image: AssetImage(event.image),
           fit: BoxFit.cover,
         ),
       ),
@@ -46,11 +52,14 @@ class EventItem extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  "22",
+                  event.date.day.toString(),
                   style: AppStyles.bold20Primary,
                   textAlign: TextAlign.center,
                 ),
-                Text("Nov", style: AppStyles.bold14Primary),
+                Text(
+                  DateFormat('MMM').format(event.date),
+                  style: AppStyles.bold14Primary,
+                ),
               ],
             ),
           ),
@@ -72,15 +81,19 @@ class EventItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: Text(
-                    "This is a Birthday Party.",
-                    style: AppStyles.bold14Black,
-                  ),
+                  child: Text(event.title, style: AppStyles.bold14Black),
                 ),
                 IconButton(
-                  onPressed: () {},
-                  icon: const ImageIcon(
-                    AssetImage(AppAssets.favorateIcUnselected),
+                  onPressed: () {
+                    eventListProvider.updateIsFavorite(event);
+                    eventListProvider.getAllEvents();
+                  },
+                  icon: ImageIcon(
+                    AssetImage(
+                      event.isFavorite
+                          ? AppAssets.favorateSelectedIc
+                          : AppAssets.favorateIcUnselected,
+                    ),
                   ),
                 ),
               ],

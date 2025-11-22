@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> taps = [
     const HomeTap(),
     const MapTap(),
-    const FavoriteTap(),
+    FavoriteTap(),
     const ProfileTap(),
   ];
   @override

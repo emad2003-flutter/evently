@@ -1,3 +1,5 @@
+import 'package:evently/Models/event.dart';
+import 'package:evently/Providers/event_list_provider.dart';
 import 'package:evently/UI/HomeScreen/event_tap_item_for_create_event.dart';
 import 'package:evently/UI/Widgets/custom_elevated_bottom.dart';
 import 'package:evently/UI/Widgets/custom_text_feild.dart';
@@ -5,9 +7,12 @@ import 'package:evently/UI/Widgets/event_date_or_time.dart';
 import 'package:evently/Utils/app_assets.dart';
 import 'package:evently/Utils/app_colors.dart';
 import 'package:evently/Utils/app_styles.dart';
+import 'package:evently/Utils/toast_utils.dart';
+import 'package:evently/firebase_utils.dart';
 import 'package:evently/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class CreateEvent extends StatefulWidget {
   const CreateEvent({super.key});
@@ -24,10 +29,14 @@ class _CreateEventState extends State<CreateEvent> {
   String dateFormatted = "";
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  String selectedImage = '';
+  String selectedEventName = '';
   var formKey = GlobalKey<FormState>();
+  late EventListProvider eventListProvider;
 
   @override
   Widget build(BuildContext context) {
+    eventListProvider = Provider.of<EventListProvider>(context);
     // categories list
     List<String> categories = [
       AppLocalizations.of(context)!.sport,
@@ -53,8 +62,9 @@ class _CreateEventState extends State<CreateEvent> {
       AppAssets.eating,
     ];
 
-    String selectedImage = imageSelectedEventList[selectedIndex];
-    String selectedEventName = categories[selectedIndex];
+    selectedImage = imageSelectedEventList[selectedIndex];
+    selectedEventName = categories[selectedIndex];
+
     // get device width and height
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
@@ -150,6 +160,7 @@ class _CreateEventState extends State<CreateEvent> {
                         if (text == null || text.isEmpty) {
                           return "Please enter enter description. ";
                         }
+                        return null;
                       },
                     ),
                     SizedBox(height: 16 / designHeight * height),
@@ -223,8 +234,26 @@ class _CreateEventState extends State<CreateEvent> {
   }
 
   void addEvent() {
-    if (formKey.currentState?.validate() == true) {}
-    setState(() {});
+    if (formKey.currentState?.validate() == true) {
+      Event event = Event(
+        title: titleController.text,
+        date: selectedDate!,
+        description: descriptionController.text,
+        image: selectedImage,
+        eventName: selectedEventName,
+        time: selectedTime!.format(context),
+      );
+      FirebaseUtils.addEventToFirestore(event).timeout(
+        const Duration(milliseconds: 500),
+        onTimeout: () {
+          // Handle timeout
+          CustomToast.showToast(message: "Event added successfully!");
+        },
+      );
+      eventListProvider.getAllEvents();
+      eventListProvider.filterEvents();
+      Navigator.pop(context);
+    }
   }
 
   void chooseDate() async {

@@ -13,9 +13,10 @@ class CustomTextFeild extends StatelessWidget {
   String? labelText;
   TextStyle? labelStyle;
   MyValidator validator;
-
+  bool? obscureText;
   TextEditingController? controller;
   CustomTextFeild({
+    this.obscureText,
     this.validator,
     this.borderColor,
     this.hintText,
@@ -31,6 +32,8 @@ class CustomTextFeild extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscuringCharacter: '*',
+      obscureText: obscureText ?? false,
       validator: validator,
       controller: controller,
       cursorColor: AppColors.primaryLight,

@@ -3,13 +3,17 @@ class AppAssets {
   static const String homeIcUnselected = 'assets/images/Home_unselected_ic.png';
   static const String mapIcUnselected = 'assets/images/Map_unselected_ic.png';
   static const String addIcUnselected = 'assets/images/Add_ic.png';
-  static const String favorateIcUnselected ='assets/images/Favorate_unselected_ic-1.png';
-  static const String profileIcUnselected ='assets/images/Profile_uncelected_ic.png';
+  static const String favorateIcUnselected =
+      'assets/images/Favorate_unselected_ic-1.png';
+  static const String profileIcUnselected =
+      'assets/images/Profile_uncelected_ic.png';
   static const String homeIcSelected = 'assets/images/Home_selected_ic.png';
   static const String mapIcSelected = 'assets/images/Map_selected_ic.png';
   static const String addIcSelected = 'assets/images/Add_ic.png';
-  static const String favorateIcSlected ='assets/images/favorate_selected_ic.png';
-  static const String progileIcSelected ='assets/images/Profile_selected_ic.png';
+  static const String favorateIcSlected =
+      'assets/images/favorate_selected_ic.png';
+  static const String progileIcSelected =
+      'assets/images/Profile_selected_ic.png';
   static const String allIc = 'assets/images/all_ic.png';
   static const String brithdayIc = 'assets/images/brithday_IC.png';
   static const String locationIc = 'assets/images/location_ic.png';
@@ -18,16 +22,17 @@ class AppAssets {
   static const String birthday = 'assets/images/birthday.png';
   static const String searchIc = 'assets/images/search_ic.png';
   static const String profilePhoto = 'assets/images/profile_photo.jpg';
-  static const String sport ="assets/images/Sport.png";
-  static const String meeting ="assets/images/meeting.png";
-  static const String gaming ="assets/images/gaming.png";
-  static const String workshop ="assets/images/workshop.png";
-  static const String bookClub ="assets/images/book_club.png";
-  static const String exhibition ="assets/images/exhibition.png";
-  static const String holiday ="assets/images/holiday.png";
-  static const String eating ="assets/images/eating.png";
+  static const String sport = "assets/images/Sport.png";
+  static const String meeting = "assets/images/meeting.png";
+  static const String gaming = "assets/images/gaming.png";
+  static const String workshop = "assets/images/workshop.png";
+  static const String bookClub = "assets/images/book_club.png";
+  static const String exhibition = "assets/images/exhibition.png";
+  static const String holiday = "assets/images/holiday.png";
+  static const String eating = "assets/images/eating.png";
   static const String noteEditIc = 'assets/images/Note_Edit_ic.png';
-  static const String locationWithGroundIc = 'assets/images/location_by_ground_ic.png';
+  static const String locationWithGroundIc =
+      'assets/images/location_by_ground_ic.png';
   static const String clockIc = 'assets/images/clock_ic.png';
   static const String calendarDayIc = 'assets/images/Calendar_Days_ic.png';
   static const String arabicIc = 'assets/images/arabic_ic.png';
@@ -37,5 +42,8 @@ class AppAssets {
   static const String passwordIc = 'assets/images/password_ic.png';
   static const String unshowPasswordIc = 'assets/images/unshow_password_ic.png';
   static const String googleIc = "assets/images/googleIc.png";
-  static const String forgetPassword = "assets/images/forget_password_photo.png";
+  static const String forgetPassword =
+      "assets/images/forget_password_photo.png";
+  static const String favorateSelectedIc =
+      "assets/images/favorate_selected_ic.png";
 }

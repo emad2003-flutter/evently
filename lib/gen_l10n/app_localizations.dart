@@ -397,6 +397,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reset Password'**
   String get reset_password;
+
+  /// No description provided for @no_events_exist.
+  ///
+  /// In en, this message translates to:
+  /// **'No events exist'**
+  String get no_events_exist;
 }
 
 class _AppLocalizationsDelegate

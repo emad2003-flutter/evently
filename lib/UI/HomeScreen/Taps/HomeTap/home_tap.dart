@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:evently/Providers/event_list_provider.dart';
 import 'package:evently/UI/HomeScreen/Taps/HomeTap/event_item.dart';
 import 'package:evently/UI/HomeScreen/Taps/HomeTap/event_tap_item.dart';
 import 'package:evently/Utils/app_assets.dart';
@@ -5,6 +7,7 @@ import 'package:evently/Utils/app_colors.dart';
 import 'package:evently/Utils/app_styles.dart';
 import 'package:evently/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeTap extends StatefulWidget {
   const HomeTap({super.key});
@@ -14,23 +17,12 @@ class HomeTap extends StatefulWidget {
 }
 
 class _HomeTapState extends State<HomeTap> {
-  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    // categories list
-    List<String> categories = [
-      AppLocalizations.of(context)!.all,
-      AppLocalizations.of(context)!.sport,
-      AppLocalizations.of(context)!.birthday,
-      AppLocalizations.of(context)!.meeting,
-      AppLocalizations.of(context)!.gaming,
-      AppLocalizations.of(context)!.workshop,
-      AppLocalizations.of(context)!.book_club,
-      AppLocalizations.of(context)!.exhibition,
-      AppLocalizations.of(context)!.holiday,
-      AppLocalizations.of(context)!.eating,
-    ];
-
+    var eventListProvider = Provider.of<EventListProvider>(context);
+    eventListProvider.getAllEvents();
+    eventListProvider.getEventListNames(context);
+    eventListProvider.filterEvents();
     // get device width and height
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
@@ -95,22 +87,22 @@ class _HomeTapState extends State<HomeTap> {
                 ),
                 SizedBox(height: (16 / designHeight) * height),
                 DefaultTabController(
-                  length: categories.length,
+                  length: eventListProvider.categories.length,
                   child: TabBar(
                     onTap: (index) {
-                      selectedIndex = index;
-                      setState(() {});
+                      eventListProvider.setSelectedIndex(index);
                     },
                     tabAlignment: TabAlignment.start,
                     isScrollable: true,
                     indicatorColor: AppColors.transparentColor,
                     dividerColor: AppColors.transparentColor,
                     labelPadding: EdgeInsets.zero,
-                    tabs: categories.map((category) {
+                    tabs: eventListProvider.categories.map((category) {
                       return EventTapItem(
                         eventType: category,
                         isSelected:
-                            selectedIndex == categories.indexOf(category),
+                            eventListProvider.selectedIndex ==
+                            eventListProvider.categories.indexOf(category),
                       );
                     }).toList(),
                   ),
@@ -120,15 +112,24 @@ class _HomeTapState extends State<HomeTap> {
           ),
           SizedBox(height: (8 / designHeight) * height),
           Expanded(
-            child: ListView.separated(
-              itemBuilder: (context, index) {
-                return const EventItem();
-              },
-              separatorBuilder: (context, index) {
-                return SizedBox(height: (16 / designHeight) * height);
-              },
-              itemCount: 10,
-            ),
+            child: eventListProvider.filteredEventList.isEmpty
+                ? Center(
+                    child: Text(
+                      AppLocalizations.of(context)!.no_events_exist,
+                      style: AppStyles.bold14Black,
+                    ),
+                  )
+                : ListView.separated(
+                    itemBuilder: (context, index) {
+                      return EventItem(
+                        event: eventListProvider.filteredEventList[index],
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return SizedBox(height: (16 / designHeight) * height);
+                    },
+                    itemCount: eventListProvider.filteredEventList.length,
+                  ),
           ),
         ],
       ),
