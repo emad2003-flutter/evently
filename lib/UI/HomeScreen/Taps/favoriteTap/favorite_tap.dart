@@ -1,4 +1,3 @@
-import 'package:evently/Models/event.dart';
 import 'package:evently/Providers/event_list_provider.dart';
 import 'package:evently/UI/HomeScreen/Taps/HomeTap/event_item.dart';
 import 'package:evently/UI/Widgets/custom_text_feild.dart';

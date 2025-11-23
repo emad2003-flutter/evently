@@ -160,4 +160,35 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get no_events_exist => 'لا يوجد مناسبات';
+
+  @override
+  String get on_boardin_title1 => 'خصص تجربتك';
+
+  @override
+  String get on_boardin_title2 => 'اعثر على الفعاليات التي تلهمك';
+
+  @override
+  String get on_boardin_title3 => 'تخطيط فعاليات بسهولة';
+
+  @override
+  String get on_boardin_title4 => 'تواصل مع الأصدقاء وشارك اللحظات';
+
+  @override
+  String get on_bording_pragraph_1 =>
+      'اختر السمة واللغة المفضلة لديك لتبدأ تجربة مريحة ومخصّصة تناسب أسلوبك.';
+
+  @override
+  String get on_bording_pragraph_2 =>
+      'استكشف عالمًا من الفعاليات المصممة لاهتماماتك. سواء كنت تحب الموسيقى الحية، ورش الفنون، الشبكات المهنية، أو اكتشاف تجارب جديدة، ستجد ما يناسبك. توصياتنا المنسقة ستساعدك على الاستكشاف والتواصل والاستفادة من كل الفرص من حولك.';
+
+  @override
+  String get on_bording_pragraph_3 =>
+      'تخلص من عناء تنظيم الفعاليات باستخدام أدوات التخطيط الشاملة لدينا. من إرسال الدعوات وإدارة الردود إلى جدولة التذكيرات وتنسيق التفاصيل — نحن هنا لمساعدتك. خطط بسهولة وركز على ما هو مهم: خلق تجربة لا تُنسى لك ولضيوفك.';
+
+  @override
+  String get on_bording_pragraph_4 =>
+      'اجعل كل فعالية مميزة بمشاركتها مع الآخرين. منصتنا تتيح لك دعوة الأصدقاء، إبقاء الجميع على اطلاع، والاحتفال باللحظات معًا. التقط وشارك اللحظات الرائعة مع شبكتك لتستعيد الذكريات وتحتفظ بها.';
+
+  @override
+  String get lets_start => 'لنبدأ';
 }

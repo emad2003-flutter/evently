@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:evently/Providers/event_list_provider.dart';
 import 'package:evently/UI/HomeScreen/Taps/HomeTap/event_item.dart';
 import 'package:evently/UI/HomeScreen/Taps/HomeTap/event_tap_item.dart';

@@ -46,4 +46,14 @@ class AppAssets {
       "assets/images/forget_password_photo.png";
   static const String favorateSelectedIc =
       "assets/images/favorate_selected_ic.png";
+  static const String onBording1 = "assets/images/on_boarding1.png";
+  static const String onBording2 = "assets/images/on_boarding2.png";
+  static const String onBording3 = "assets/images/on_boarding3.png";
+  static const String onBording4 = "assets/images/on_boarding4.png";
+  static const String brandingForOnboarding =
+      "assets/images/branding_for_onboarding_screen.png";
+  static const String themeSwitch = "assets/images/themeSwitsh.png";
+  static const String languageSwitch = "assets/images/LanguageSwitch.png";
+  static const String nextIC = "assets/images/next_ic.png";
+  static const String backIC = "assets/images/back_ic.png";
 }

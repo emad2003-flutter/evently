@@ -6,6 +6,8 @@ import 'package:evently/UI/Auth/Login%20Page/login_page.dart';
 import 'package:evently/UI/Auth/Register%20Page/register_page.dart';
 import 'package:evently/UI/HomeScreen/create_event.dart';
 import 'package:evently/UI/HomeScreen/home_screen.dart';
+import 'package:evently/UI/OnboardingScreens/onboarding.dart';
+import 'package:evently/UI/OnboardingScreens/start_screen.dart';
 import 'package:evently/Utils/app_themes.dart';
 import 'package:evently/firebase_options.dart';
 import 'package:evently/gen_l10n/app_localizations.dart';
@@ -44,13 +46,15 @@ class MyApp extends StatelessWidget {
           ? ThemeMode.light
           : ThemeMode.dark,
       debugShowCheckedModeBanner: false,
-      initialRoute: LoginPage.routeName,
+      initialRoute: StartScreen.routeName,
       routes: {
         HomeScreen.routeName: (context) => const HomeScreen(),
         CreateEvent.routeName: (context) => const CreateEvent(),
         LoginPage.routeName: (context) => LoginPage(),
         RegisterPage.routeName: (context) => RegisterPage(),
         ForgetPassword.routeName: (context) => const ForgetPassword(),
+        StartScreen.routeName: (context) => const StartScreen(),
+        Onboarding.routeName: (context) => Onboarding(),
       },
       localizationsDelegates: AppLocalizations.localizationsDelegates,
 
